@@ -35,3 +35,10 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# Logs
+/logs
+*.log
+
+bergsanity/node_modules/
+bergsanity/node_modules/**
