@@ -19,7 +19,7 @@ export default async function createComment(
   const { _id, name, email, comment } = JSON.parse(req.body)
 
   try {
-    const res = await client.create({
+    await client.create({
       _type: 'comment',
       post: {
         _type: 'reference',
@@ -35,6 +35,6 @@ export default async function createComment(
       .status(500)
       .json({ message: 'Något gick fel med att skicka en comment', error })
   }
-  console.log('Comment submitted', res)
+  console.log('Comment submitted')
   return res.status(200).json({ message: 'Kommentar skickad' })
 }

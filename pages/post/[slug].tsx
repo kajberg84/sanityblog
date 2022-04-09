@@ -20,8 +20,6 @@ interface Props {
 function Post({ post }: Props) {
   const [submitted, setSubmitted] = useState(false)
 
-  console.log(post)
-
   const {
     register,
     handleSubmit,
@@ -29,14 +27,13 @@ function Post({ post }: Props) {
   } = useForm<IFormInput>()
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    console.log('submitdata:', data)
+    // console.log('submitdata:', data)
 
     await fetch('/api/createComment', {
       method: 'POST',
       body: JSON.stringify(data),
     })
       .then(() => {
-        console.log(data)
         setSubmitted(true)
       })
       .catch((err) => {
@@ -95,7 +92,7 @@ function Post({ post }: Props) {
           />
         </div>
       </article>
-      <hr className="my-5 mx-auto max-w-lg border border-yellow-500" />
+      <hr className="my-5 mx-auto max-w-lg border border-green-400" />
       {submitted ? (
         <div className="my-10 mx-auto flex max-w-2xl flex-col bg-green-400 p-10 text-white">
           <h2 className="text-center text-3xl font-bold">
@@ -124,7 +121,7 @@ function Post({ post }: Props) {
             <span className="text-gray-700">Namn</span>
             <input
               {...register('name', { required: true })}
-              className="form-input mt-1 block w-full rounded border py-2 px-3 shadow ring-yellow-500  focus:ring"
+              className="form-input mt-1 block w-full rounded border py-2 px-3 shadow ring-green-500  focus:ring"
               placeholder="Ellen nu"
               type="text"
             />
@@ -133,7 +130,7 @@ function Post({ post }: Props) {
             <span className="text-gray-700">Email</span>
             <input
               {...register('email', { required: true })}
-              className="form-input mt-1 block w-full rounded border py-2 px-3 shadow ring-yellow-500  focus:ring"
+              className="form-input mt-1 block w-full rounded border py-2 px-3 shadow ring-green-500  focus:ring"
               placeholder="Ellen nu"
               type="email"
             />
@@ -143,7 +140,7 @@ function Post({ post }: Props) {
 
             <textarea
               {...register('comment', { required: true })}
-              className="form-textarea mt-1 block w-full rounded border py-2 px-3 shadow outline-none ring-yellow-500 focus:ring"
+              className="form-textarea mt-1 block w-full rounded border py-2 px-3 shadow outline-none ring-green-500 focus:ring"
               placeholder="..."
               rows={8}
             ></textarea>
@@ -169,10 +166,23 @@ function Post({ post }: Props) {
           </div>
           <input
             type="submit"
-            className="focus:shadow-outline cursor-pointer bg-yellow-500 py-2 px-4 font-bold text-white shadow hover:bg-yellow-400 focus:outline-none"
+            className="focus:shadow-outline cursor-pointer bg-green-500 py-2 px-4 font-bold text-white shadow hover:bg-green-400 focus:outline-none"
           />
         </form>
       )}
+      {/* comments under här */}
+      <div className="my-10 mx-auto flex max-w-2xl flex-col space-y-2 p-10 shadow shadow-blue-500">
+        <h3 className="text-3xl"> Kommentarer</h3>
+        <hr className="pb-2" />
+        {post.comments.map((comment) => (
+          <div key={comment._id}>
+            <p>
+              <span className="text-blue-600">{comment.name}:</span>{' '}
+              {comment.comment}
+            </p>
+          </div>
+        ))}
+      </div>
     </main>
   )
 }
@@ -210,6 +220,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   },
   'comments': *[
     _type == "comment" &&
+    post._ref == ^._id &&
     approved == true ],
     description,
     slug,

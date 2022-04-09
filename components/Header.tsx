@@ -6,14 +6,14 @@ function Header() {
     <header className="mx-auto flex max-w-7xl justify-between p-5">
       <div className="flex items-center space-x-5">
         <Link href={'/'}>
-          <div>
+          <div className="flex cursor-pointer items-center font-bold">
             <Image
-              className="cursor-pointer"
               src="/kossa.jpg"
               alt="Picture of a cow"
               width={60}
               height={44}
             />
+            <p>Bergs Kossor</p>
           </div>
         </Link>
 

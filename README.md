@@ -27,3 +27,7 @@ Om man vill lägga till schema så lägg till fil och hur det ser ut i schemas d
 sen gå in schema.js och importera det
 
 sen lägg till det under types schemas i den filen
+
+när klar skriv
+
+# sanity deploy från sanity builden
