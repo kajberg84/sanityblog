@@ -22,3 +22,8 @@ ska se RemoteSigned om fungerar.
 För att starta sanity servern. cd till bergsanity sen:
 
 # sanity start
+
+Om man vill lägga till schema så lägg till fil och hur det ser ut i schemas dokument.
+sen gå in schema.js och importera det
+
+sen lägg till det under types schemas i den filen

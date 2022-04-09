@@ -5,33 +5,14 @@ import Header from '../components/Header'
 import { sanityClient, urlFor } from '../sanity.js'
 import { Post } from '../typings'
 import Link from 'next/link'
-
-export const getServerSideProps = async () => {
-  const query = `*[_type == "post"] {
-    _id,
-    title,
-     author -> {
-     name,
-     image
-  },
-    description,
-    slug,
-    mainImage
-  }`
-  const posts = await sanityClient.fetch(query)
-  return {
-    props: {
-      posts,
-    },
-  }
-}
+import image from 'next/image'
+import { title } from 'process'
 
 interface Props {
   posts: Post[]
 }
 
 export default function Home({ posts }: Props) {
-  console.log(posts)
   return (
     <div className="mx-auto max-w-7xl">
       <Head>
@@ -43,9 +24,9 @@ export default function Home({ posts }: Props) {
         <div className="space-y-5 px-10">
           <h1 className="max-w-xl font-serif text-6xl">
             <span className="underline decoration-black decoration-4">
-              Medium
+              Bergs Kossor
             </span>{' '}
-            is a place to write, read and connect
+            är ett ställe där kossorna kan skriva
           </h1>
           <h2>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim harum
@@ -54,12 +35,7 @@ export default function Home({ posts }: Props) {
             Hic, voluptatem repellat.
           </h2>
         </div>
-
-        <img
-          className="hidden h-32 md:inline-flex lg:h-full"
-          src="https://accountabilitylab.org/wp-content/uploads/2020/03/Medium-logo.png"
-          alt=""
-        />
+        {/* <p className="hidden h-32 md:inline-flex lg:h-full">K</p> */}
       </div>
 
       {/* Alla poster */}
@@ -68,7 +44,7 @@ export default function Home({ posts }: Props) {
           <Link key={post._id} href={`/post/${post.slug.current}`}>
             <div className="group cursor-pointer overflow-hidden rounded-lg border">
               <img
-                className="group-hover:scaöe-105 h-60 w-full object-cover transition-transform duration-200 ease-in-out group-hover:scale-105"
+                className="h-60 w-full object-cover transition-transform duration-200 ease-in-out group-hover:scale-105"
                 src={urlFor(post.mainImage).url()!}
                 alt="post image"
               />
@@ -91,4 +67,24 @@ export default function Home({ posts }: Props) {
       </div>
     </div>
   )
+}
+
+export const getServerSideProps = async () => {
+  const query = `*[_type == "post"] {
+    _id,
+    title,
+     author -> {
+     name,
+     image
+  },
+    description,
+    slug,
+    mainImage
+  }`
+  const posts = await sanityClient.fetch(query)
+  return {
+    props: {
+      posts,
+    },
+  }
 }
