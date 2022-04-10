@@ -28,15 +28,15 @@ function Header() {
             Följ kossan
           </h3>
         </div>
-        <div className="items-center space-x-5 sm:visible md:hidden ">
-          kebab
-        </div>
       </div>
-      <div className="flex items-center space-x-5 text-green-600">
+      <div className="hidden items-center space-x-5 text-green-600 md:flex ">
         <h3>Logga in</h3>
         <h3 className="rounded-full border border-green-600 px-4 py-1">
           Registrera
         </h3>
+      </div>
+      <div className="my-auto items-center space-x-5 sm:visible md:hidden ">
+        KebabMenu(notdone)
       </div>
     </header>
   )

@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import React from 'react'
 import Header from '../components/Header'
-import Image from 'next/image'
 import Footer from '../components/Footer'
 function about() {
   return (
@@ -24,7 +23,7 @@ function about() {
       </div>
       <div className="mx-auto mt-10 w-full md:w-96 md:max-w-full">
         <div className="mb-20 border border-gray-300 p-6 sm:rounded-md">
-          <form method="POST" action="https://herotofu.com/start">
+          <form method="POST">
             <label className="mb-6 block">
               <span className="text-gray-700">Ditt namn</span>
               <input

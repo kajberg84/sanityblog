@@ -1,12 +1,9 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import Header from '../components/Header'
 import { sanityClient, urlFor } from '../sanity.js'
 import { Post } from '../typings'
 import Link from 'next/link'
-import image from 'next/image'
-import { title } from 'process'
 import Footer from '../components/Footer'
 
 interface Props {
