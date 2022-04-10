@@ -18,8 +18,12 @@ function Header() {
         </Link>
 
         <div className="hidden items-center space-x-5 md:inline-flex">
-          <h3>Om</h3>
-          <h3>Kontakta</h3>
+          <h3>
+            <Link href={'/about'}>Om</Link>
+          </h3>
+          <h3>
+            <Link href={'/contact'}>Kontakta</Link>
+          </h3>
           <h3 className="rounded-full bg-green-600 px-4 py-1 text-white">
             Följ kossan
           </h3>

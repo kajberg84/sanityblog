@@ -7,6 +7,7 @@ import { Post } from '../typings'
 import Link from 'next/link'
 import image from 'next/image'
 import { title } from 'process'
+import Footer from '../components/Footer'
 
 interface Props {
   posts: Post[]
@@ -16,13 +17,13 @@ export default function Home({ posts }: Props) {
   return (
     <div className="mx-auto max-w-7xl">
       <Head>
-        <title>Bergs sanity blog</title>
+        <title>Bergs Kossors</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
       <div className="flex items-center justify-between border-y border-black bg-green-400 py-10 lg:py-0">
         <div className="space-y-5 px-10">
-          <h1 className="max-w-xl font-serif text-6xl">
+          <h1 className=" font-serif text-6xl">
             <span className="underline decoration-black decoration-4">
               Bergs Kossor
             </span>{' '}
@@ -35,7 +36,6 @@ export default function Home({ posts }: Props) {
             Hic, voluptatem repellat.
           </h2>
         </div>
-        {/* <p className="hidden h-32 md:inline-flex lg:h-full">K</p> */}
       </div>
 
       {/* Alla poster */}
@@ -65,6 +65,7 @@ export default function Home({ posts }: Props) {
           </Link>
         ))}
       </div>
+      <Footer />
     </div>
   )
 }
